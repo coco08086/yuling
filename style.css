@@ -1,0 +1,108 @@
+html {
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1.5rem;
+  font-size: 1.3em;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --cursor-height: 0px;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background-image:url('images/BLACK.png'); 
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+    color: white;
+  display:flex;align-items:center;justify-content:center;
+  min-height: 100vh;
+  line-height: 1;
+
+}
+.glow-text {
+  position: relative;
+  transition: all 0.15s ease;
+
+  /* 基礎發光 */
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.4),
+    0 0 15px rgba(255,255,255,0.2);
+}
+
+
+
+*::selection {
+  background: rgba(229, 229, 160, 0.6);
+  background-blend-mode: overlay;
+}
+
+.content {
+  width:80%;max-width:1000px;
+  text-align: center;
+}
+
+.highlightable {
+  --show-cursor: none;
+  backdrop-filter:blur(10px);   
+  box-shadow:0 8px 32px rgba(229, 229, 160, 0.6);
+  border-radius:90px;
+  cursor: none;
+}
+
+.highlightable:hover {
+  --show-cursor: block;
+}
+
+.highlightable::after {
+  --cursor-width: max(5px, calc(var(--cursor-height) * 0.4));
+  display: var(--show-cursor);
+  content: "";
+  pointer-events: none;
+  background: transparent;
+  border: 2px solid rgba(229, 229, 160, 0.774);
+  border-radius: calc(var(--cursor-width) / 2);
+  translate: -50% -50%;
+  position: absolute;
+  top: var(--mouse-y, 0);
+  left: var(--mouse-x, 0);
+  width: var(--cursor-width);
+  height: var(--cursor-height);
+  cursor: none;
+  transition: height 0.2s cubic-bezier(0.095, 1.090, 0.605, 1.235),
+              width 0.6s cubic-bezier(0.095, 1.090, 0.605, 1.235);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+h1, h2, h3, h4, h5, p {
+  margin-block: 60px;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 3rem;
+}
